@@ -1,0 +1,15 @@
+{
+    "screen_recorder": "byzanz_record", 
+    "Qt": {}, 
+    "language": "\u7b80\u4f53\u4e2d\u6587", 
+    "Plugin": {}, 
+    "gui": "Qt", 
+    "step_recorder": "StepRecorder", 
+    "gui_config": {}, 
+    "plugins": [
+        "test", 
+        "MouseClickHintLinux"
+    ], 
+    "plugins_config": {}, 
+    "MouseClickHint": {}
+}

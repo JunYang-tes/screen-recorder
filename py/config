@@ -1,0 +1,45 @@
+{
+    "Qt": {
+        "Range": {
+            "y": 21, 
+            "x": 0, 
+            "w": 640, 
+            "h": 480
+        }, 
+        "Main": {
+            "folder": ""
+        }, 
+        "RecorderControl": {
+            "y": 21, 
+            "x": 1031
+        }
+    }, 
+    "Plugin": {}, 
+    "plugin_config": {}, 
+    "recorder_config": {
+        "StepRecorder": {
+            "filter": "*.html"
+        }, 
+        "byzanz_record": {
+            "filter": "*.gif | *.GIF"
+        }
+    }, 
+    "gui_config": {
+        "Qt": {
+            "Range": {
+                "y": 21, 
+                "x": 0, 
+                "w": 640, 
+                "h": 480
+            }, 
+            "Main": {
+                "folder": ""
+            }, 
+            "RecorderControl": {
+                "y": 21, 
+                "x": 1031
+            }
+        }
+    }, 
+    "MouseClickHint": {}
+}

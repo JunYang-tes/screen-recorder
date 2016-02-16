@@ -1,0 +1,10 @@
+{
+    "name":"byzanz_record",
+    "program":"byzanz-record",
+    "xoption":"-x",
+    "yoption":"-y",
+    "woption":"-w",
+    "hoption":"-h",
+    "outoption":"",
+    "other":"-d 65535"
+}
