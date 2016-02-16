@@ -36,8 +36,10 @@ GUIFactory.setGUIImpl(cfg.get("gui"))
 localization.set_location(cfg.get("language"))
 cfg.recorder=RecorderFactory.get_by_name(cfg.get("screen_recorder"))
 cfg.step_recorder=RecorderFactory.get_by_name(cfg.get("step_recorder"))
-cfg.recorder_filter=cfg.recorder.filter
-cfg.step_recorder_filter=cfg.step_recorder.filter
+if cfg.recorder is not None:
+    cfg.recorder_filter=cfg.recorder.filter
+if cfg.step_recorder is not None:
+    cfg.step_recorder_filter=cfg.step_recorder.filter
 cfg_item_name=cfg.get("gui")
 
 
