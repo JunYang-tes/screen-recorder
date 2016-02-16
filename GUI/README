@@ -1,0 +1,10 @@
+Any GUI implementation must have the following methods:
+set_on_start(callback)      set callback function when user clicked some button like "Start"
+set_on_pause(callback)      call when user clicked "Pause"
+set_on_restart(callback)    call when user clicked "Restart"
+set_on_stop(callacbk)       call when user clicked "Stop"
+get_cfg_name()              return name of configuration item used in this GUI
+And GUI class must has an constructor like:
+
+    def __init__(self,cfg={})
+cfg is and dict .

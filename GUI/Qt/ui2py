@@ -1,0 +1,4 @@
+#!/bin/sh
+Path=/usr/lib/python2.7/dist-packages/PyQt4/uic/pyuic.py
+echo $1 $2
+python $Path $1 -o $2
