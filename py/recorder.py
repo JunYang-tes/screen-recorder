@@ -116,13 +116,8 @@ class ConfigExternalRecorder(ExternalRecorder):
     def __init__(self,program_cfg={},user_cfg={}):
         self.filter="*.gif"
         super(ConfigExternalRecorder, self).__init__(program_cfg,user_cfg)
-        self._xoption = "-x"
-        self._yoption = "-y"
-        self._woption = "-w"
-        self._hoption = "-h"
-        self._outoptoin = ""
         self._name = ""
-        self._other = ""
+        self._argument = ""
         self._program= ""
 
 
@@ -136,11 +131,7 @@ class ConfigExternalRecorder(ExternalRecorder):
             else:
                 raise Exception("Program must set")
             self.__set(data, "name")
-            self.__set(data, "xoption")
-            self.__set(data, "yoption")
-            self.__set(data, "hoption")
-            self.__set(data, "woption")
-            self.__set(data, "other", False)
+            self.__set(data, "argument")
 
     def __set(self, data, key, w=True):
         if key in data:
@@ -150,13 +141,13 @@ class ConfigExternalRecorder(ExternalRecorder):
                 logging.warn("%s not set" % key)
 
     def get_command_line_arg(self, config):
-        cmd= " %s %s " % (self._xoption, config.range.x)
-        cmd+="%s %s " % (self._yoption, config.range.y)
-        cmd+="%s %s " % (self._woption, config.range.width)
-        cmd+="%s %s " % (self._hoption, config.range.height)
-        cmd+="%s %s " % (self._outoptoin, config.saveto)
-        cmd+=self._other
-        return cmd
+        return self._argument.replace("{x}", str(config.range.x)) \
+            .replace("{y}", str(config.range.y)) \
+            .replace("{width}", str(config.range.width)) \
+            .replace("{height}", str(config.range.height)) \
+            .replace("{saveto}", str(config.saveto))
+
+
 
     def get_external_program(self):
         return self._program
