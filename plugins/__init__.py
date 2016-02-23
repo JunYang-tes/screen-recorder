@@ -60,3 +60,29 @@ class Plugin(object):
     def get_user_cfg(self):
         return self._user_cfg
 
+
+import lib.globle_lock
+
+
+class GlobalSingletonPlugin(Plugin):
+    """
+    Global singleton means across interpreter,in other words,no matter how many interpreter running,
+    there is only one global singleton plugin running
+    """
+
+    def __init__(self, id, program_cfg, user_cfg, run_in_thread=False):
+        Plugin.__init__(self, program_cfg, user_cfg, run_in_thread)
+        self._is_first_instance = lib.globle_lock.lock(id)
+        self._id = id;
+
+    def __del__(self):
+        if self._is_first_instance:
+            lib.globle_lock.unload(self._id)
+
+    def _run(self):
+        if self._is_first_instance:
+            Plugin._run(self)
+
+    def _stop(self):
+        if self._is_first_instance:
+            Plugin._stop(self)
