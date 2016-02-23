@@ -7,15 +7,14 @@ from py.configdata import Range as r;
 from py.configdata import RecordConfig as rconfig;
 
 lang=local.Local()
-helper.lang=lang
-
+_ = helper.get_text_fn(lang)
 
 
 class Range(QtGui.QDialog):
 
     def __init__(self):
         super(Range, self).__init__()
-        self.setWindowTitle(helper._("Range"))
+        self.setWindowTitle(_("Range"))
         # I don't know where is Qt::WA_TranslucentBackground,but I know the value of it is 120
         self.setAttribute(120);
 

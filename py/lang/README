@@ -1,0 +1,5 @@
+using gettext
+take main.py for example
+1) pygettext -o main.py.zh_CN.pot main.py
+2) modify main.py.pot
+3) msgfmt  main.py.zh_CN.pot -o main.py.po

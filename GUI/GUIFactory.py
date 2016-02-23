@@ -8,8 +8,8 @@ guiImpl = "Qt"
 def setGUIImpl(impl="Qt"):
     path=os.path.dirname(__file__)
     if not os.path.exists(path+"/"+impl) and not os.path.exists(impl+"/check.py"):
-        raise Exception(_("No such GUI implication :"+impl))
-    if getStaticFunction(_("Check"),"check")() is False:
+        raise Exception(_("No such GUI implication :") + impl)
+    if getStaticFunction("Check", "check")() is False:
         raise Exception(_("GUI implication check not pass"))
 
 def getClass(className):

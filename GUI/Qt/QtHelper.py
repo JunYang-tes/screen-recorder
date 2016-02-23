@@ -1,9 +1,14 @@
 from PyQt4 import QtCore
+import logging
 
-from py import localization as local
 
-lang = local.Local()
+def get_text_fn(lang):
+    def _(string):
+        if lang:
+            s = QtCore.QString(lang._(string))
+            return unicode(s, 'utf-8')
+        else:
+            logging.warn("lang not set")
+            return string
 
-def _(string):
-    s=QtCore.QString(lang._(string))
-    return unicode(s,'utf-8')
+    return _

@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 from PyQt4 import QtGui,QtCore
-from PyQt4 import Qt as qt
 import os
 import threading
 import py.localization as l
-_=l.Local()._
+import QtHelper as helper
+
+lang = l.Local()
+_ = helper.get_text_fn(lang)
 
 class RecordControl(QtGui.QDialog):
     def __init__(self):
@@ -32,21 +34,21 @@ class RecordControl(QtGui.QDialog):
 
         
     def setupUi(self, Dialog):
-        Dialog.setObjectName(_("Dialog"))
+        Dialog.setObjectName("Dialog")
         Dialog.resize(243, 47)
         self.horizontalLayout_2 = QtGui.QHBoxLayout(Dialog)
-        self.horizontalLayout_2.setObjectName(_("horizontalLayout_2"))
+        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
         self.horizontalLayout = QtGui.QHBoxLayout()
         self.horizontalLayout.setSizeConstraint(QtGui.QLayout.SetNoConstraint)
-        self.horizontalLayout.setObjectName(_("horizontalLayout"))
+        self.horizontalLayout.setObjectName("horizontalLayout")
         self.label = QtGui.QLabel(Dialog)
-        self.label.setObjectName(_("label"))
+        self.label.setObjectName("label")
         self.horizontalLayout.addWidget(self.label)
         self.btn_start = QtGui.QPushButton(Dialog)
-        self.btn_start.setObjectName(_("btn_start"))
+        self.btn_start.setObjectName("btn_start")
         self.horizontalLayout.addWidget(self.btn_start)
         self.btn_pause = QtGui.QPushButton(Dialog)
-        self.btn_pause.setObjectName(_("btn_pause"))
+        self.btn_pause.setObjectName("btn_pause")
         self.horizontalLayout.addWidget(self.btn_pause)
         self.horizontalLayout_2.addLayout(self.horizontalLayout)
 

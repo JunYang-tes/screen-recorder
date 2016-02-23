@@ -11,8 +11,7 @@ import GUI.Qt.range
 
 
 lang=local.Local()
-helper.lang=lang
-_=helper._
+_ = helper.get_text_fn(lang)
 
 class Main(QtGui.QMainWindow):
     def __init__(self,cfg={},user_cfg={}):

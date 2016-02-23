@@ -1,0 +1,58 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR ORGANIZATION
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2016-02-23 12:14+CST\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: pygettext.py 1.5\n"
+
+
+#: main.py:97 main.py:191
+msgid "Save to"
+msgstr "保存到"
+
+
+#: main.py:190
+msgid "Recorder"
+msgstr "录屏器"
+
+#: main.py:192
+msgid "..."
+msgstr "..."
+
+#: main.py:193
+msgid "get region"
+msgstr "设置区域"
+
+#: main.py:194
+msgid "full screen"
+msgstr "全屏"
+
+#: main.py:195
+msgid "Screen recorder"
+msgstr "屏幕录制器"
+
+#: main.py:196
+msgid "Step recorder"
+msgstr "步骤录制器"
+
+#: main.py:197
+msgid "Config"
+msgstr "配置"
+
+#: main.py:198
+msgid "Help"
+msgstr "帮助"
+
+#: main.py:199
+msgid "About"
+msgstr "关于"
+

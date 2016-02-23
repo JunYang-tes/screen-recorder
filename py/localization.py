@@ -3,16 +3,17 @@ import gettext, os
 import logging
 
 class Local:
-    Lang = "简体中文"
+    Lang = "zh_CN"
 
     def __init__(self,filepath=None):
         try:
             if filepath is None:
                 import sys
                 f = sys._getframe().f_back
-                filepath = f.f_code.co_filename
+                dirname = os.path.dirname(__file__)[:-2]
+                filepath = f.f_code.co_filename.lstrip(dirname)
             filename=Local.__get_file_name(filepath)
-            self._=Local.__get_local_strings(Local.Lang, filename)
+            self._ = Local.__get_local_strings(Local.Lang, filepath)
         except Exception as e:
             logging.warn(e)
 

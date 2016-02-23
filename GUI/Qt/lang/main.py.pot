@@ -1,0 +1,137 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR ORGANIZATION
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2016-02-23 12:14+CST\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: ENCODING\n"
+"Generated-By: pygettext.py 1.5\n"
+
+
+#: main.py:97 main.py:191
+msgid "Save to"
+msgstr ""
+
+#: main.py:103
+msgid "MainWindow"
+msgstr ""
+
+#: main.py:111
+msgid "centralwidget"
+msgstr ""
+
+#: main.py:113
+msgid "horizontalLayout_3"
+msgstr ""
+
+#: main.py:115
+msgid "mainlayout"
+msgstr ""
+
+#: main.py:122
+msgid "tabWidget"
+msgstr ""
+
+#: main.py:124
+msgid "tab"
+msgstr ""
+
+#: main.py:126
+msgid "horizontalLayout_2"
+msgstr ""
+
+#: main.py:128
+msgid "horizontalLayout"
+msgstr ""
+
+#: main.py:135
+msgid "label_saveto"
+msgstr ""
+
+#: main.py:138
+msgid "lineEdit"
+msgstr ""
+
+#: main.py:148
+msgid "btn_saveto"
+msgstr ""
+
+#: main.py:151
+msgid "btn_get_region"
+msgstr ""
+
+#: main.py:153
+msgid "btn_fullscreen"
+msgstr ""
+
+#: main.py:158 main.py:161
+msgid ""
+msgstr ""
+
+#: main.py:160
+msgid "tab_2"
+msgstr ""
+
+#: main.py:168
+msgid "menubar"
+msgstr ""
+
+#: main.py:170
+msgid "menuConfig"
+msgstr ""
+
+#: main.py:172
+msgid "menuHelp"
+msgstr ""
+
+#: main.py:175
+msgid "statusbar"
+msgstr ""
+
+#: main.py:178
+msgid "actionAbout"
+msgstr ""
+
+#: main.py:190
+msgid "Recorder"
+msgstr ""
+
+#: main.py:192
+msgid "..."
+msgstr ""
+
+#: main.py:193
+msgid "get region"
+msgstr ""
+
+#: main.py:194
+msgid "full screen"
+msgstr ""
+
+#: main.py:195
+msgid "Screen recorder"
+msgstr ""
+
+#: main.py:196
+msgid "Step recorder"
+msgstr ""
+
+#: main.py:197
+msgid "Config"
+msgstr ""
+
+#: main.py:198
+msgid "Help"
+msgstr ""
+
+#: main.py:199
+msgid "About"
+msgstr ""
+
