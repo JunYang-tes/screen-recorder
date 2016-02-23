@@ -3,10 +3,11 @@ from PyQt4 import QtGui,QtCore,Qt
 
 from GUI.Qt import QtHelper as helper
 from py import localization as local
-import GUI.Qt.range
+from py.configdata import Range as r;
+from py.configdata import RecordConfig as rconfig;
 import os
-
 import  recording
+import GUI.Qt.range
 
 
 lang=local.Local()
@@ -142,13 +143,18 @@ class Main(QtGui.QMainWindow):
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.btn_saveto.sizePolicy().hasHeightForWidth())
+        # buttons
         self.btn_saveto.setSizePolicy(sizePolicy)
         self.btn_saveto.setObjectName(_("btn_saveto"))
         self.horizontalLayout.addWidget(self.btn_saveto)
         self.btn_get_region = QtGui.QPushButton(self.tab)
         self.btn_get_region.setObjectName(_("btn_get_region"))
+        self.btn_fullscreen = QtGui.QPushButton(self.tab)
+        self.btn_fullscreen.setObjectName(_("btn_fullscreen"))
         self.horizontalLayout.addWidget(self.btn_get_region)
+        self.horizontalLayout.addWidget(self.btn_fullscreen)
         self.horizontalLayout_2.addLayout(self.horizontalLayout)
+
         self.tabWidget.addTab(self.tab, _(""))
         self.tab_2 = QtGui.QWidget()
         self.tab_2.setObjectName(_("tab_2"))
@@ -177,20 +183,22 @@ class Main(QtGui.QMainWindow):
         self.retranslateUi(MainWindow)
         self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
-        self.connect(self.btn_get_region,QtCore.SIGNAL("clicked()"),self.test)
+        self.connect(self.btn_get_region, QtCore.SIGNAL("clicked()"), self.get_region_clicked)
+        self.connect(self.btn_fullscreen, QtCore.SIGNAL("clicked()"), self.fullscreen)
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(_("Recorder"))
         self.label_saveto.setText(_("Save to"))
         self.btn_saveto.setText(_("..."))
         self.btn_get_region.setText(_("get region"))
+        self.btn_fullscreen.setText(_("full screen"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _("Screen recorder"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _("Step recorder"))
         self.menuConfig.setTitle(_("Config"))
         self.menuHelp.setTitle(_("Help"))
         self.actionAbout.setText(_("About"))
 
-    def test(self):
+    def get_region_clicked(self):
         self.hide()
         self.__restore()
         self.record_config=self._range.get_range()
@@ -198,6 +206,20 @@ class Main(QtGui.QMainWindow):
         if file_name!= "":
             self.record_config.saveto=file_name
             self.__folder=os.path.dirname(file_name)
+        self._record_control.set_config(self.record_config)
+        self._record_control.exec_()
+        self.__save()
+        self.show()
+
+    def fullscreen(self):
+        self.hide()
+        self.__restore()
+        desktop = QtGui.QDesktopWidget()
+        self.record_config = rconfig(r(0, 0, desktop.width(), desktop.height()))
+        file_name = str(self.lineEdit.text())
+        if file_name != "":
+            self.record_config.saveto = file_name
+            self.__folder = os.path.dirname(file_name)
         self._record_control.set_config(self.record_config)
         self._record_control.exec_()
         self.__save()
