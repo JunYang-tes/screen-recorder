@@ -30,15 +30,31 @@ class Local:
         current_dir = os.path.dirname(os.path.realpath(__file__))+'/lang'
         return gettext.translation(file, current_dir, [lang, "English"]).gettext
 
+
+_languages = []
+
+
+def __init():
+    list_file = os.path.dirname(__file__) + "lang/lang_list"
+    if os.path.exists(list_file):
+        with open(list_file) as f:
+            for line in f.readlines():
+                idx = line.find(":")
+                _languages.append((line[:idx], line[idx + 1:]))
+    else:
+        path = os.path.dirname(__file__) + "/lang"
+        for f in os.listdir(path):
+            _languages.append((f, f))
+
+
 def set_location(l):
     Local.Lang=l
 
 def get_all_languages():
-    ret=[]
-    path=os.path.dirname(__file__)+"/lang"
-    for f in os.listdir(path):
-        ret.append(f)
-    return ret
+    return _languages
+
+
+__init()
 
 
 if __name__=="__main__":
