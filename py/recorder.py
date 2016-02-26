@@ -141,11 +141,12 @@ class ConfigExternalRecorder(ExternalRecorder):
                 logging.warn("%s not set" % key)
 
     def get_command_line_arg(self, config):
-        return self._argument.replace("{x}", str(config.range.x)) \
-            .replace("{y}", str(config.range.y)) \
-            .replace("{width}", str(config.range.width)) \
-            .replace("{height}", str(config.range.height)) \
-            .replace("{saveto}", str(config.saveto))
+        return self._argument.format(x=str(config.range.x),
+                                     y=str(config.range.y),
+                                     width=str(config.range.width),
+                                     height=str(config.range.height),
+                                     saveto=str(config.saveto))
+
 
 
 
