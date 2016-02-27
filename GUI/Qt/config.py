@@ -27,20 +27,32 @@ class Config(QtGui.QDialog):
 
         self._init_combox(self.cb_language,
                           local.get_all_languages(),
-                          lambda t: t[1])
+                          lambda t: t[1],
+                          lambda t: True if t[0] == cfg.cfg.get("language") else False
+                          )
         self._init_combox(self.cb_recorder,
                           RecorderFactory.get_all_recorder(),
-                          lambda t: None if isinstance(t, recorder.StepRecorder) else str(t)
+                          lambda t: None if isinstance(t, recorder.StepRecorder) else str(t),
+                          lambda t: True if t.name == cfg.cfg.recorder.name else False
                           )
-        self._init_combox(self.cb_gui, GUIFactory.get_all_gui())
+        self._init_combox(self.cb_gui, GUIFactory.get_all_gui(),
+                          select_this=lambda t: True if t == cfg.cfg.get("GUI") else False
+                          )
 
-    def _init_combox(self, cb, itrable, strfn=str):
+    def _init_combox(self, cb, itrable, strfn=str, select_this=None):
+        idx = 0
+        select = 0
         for v in itrable:
             string = strfn(v)
             if string is not None:
                 string = _(string)
                 data = QtCore.QVariant(v)
                 cb.addItem(string, v)
+            if select_this(v):
+                select = idx
+            idx += 1
+        cb.setCurrentIndex(select)
+
 
     def closeEvent(self, QCloseEvent):
         data = self.cb_language.itemData(self.cb_language.currentIndex()).toPyObject()
@@ -49,9 +61,10 @@ class Config(QtGui.QDialog):
 
         data = self.cb_recorder.itemData(self.cb_recorder.currentIndex()).toPyObject()
         cfg.cfg.recorder = data
-        cfg.cfg.set("recorder", data.name)
+        cfg.cfg.set("screen_recorder", data.name)
 
         data = self.cb_gui.itemData(self.cb_gui.currentIndex()).toPyObject()
+        data = str(data)  # I dont know why data is an instance of QString now
         cfg.cfg.set("GUI", data)
 
         cfg.cfg.save()

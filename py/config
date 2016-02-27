@@ -1,19 +1,26 @@
 {
+    "screen_recorder": "byzanz_record", 
     "Qt": {
         "Range": {
-            "y": 40, 
+            "y": 0, 
             "x": 0, 
             "w": 640, 
-            "h": 320
+            "h": 480
         }, 
         "Main": {
             "folder": ""
         }, 
         "RecorderControl": {
-            "y": 21, 
-            "x": 1033
+            "y": 0, 
+            "x": 0
         }
     }, 
-    "language": "zh_CN", 
+    "language": "en_UA", 
     "Plugin": {}, 
-    "GUI": 
+    "GUI": "Qt", 
+    "plugin_config": {}, 
+    "gui_config": {}, 
+    "recorder": "ffmpeg_linux", 
+    "gui": "Qt", 
+    "MouseClickHint": {}
+}
