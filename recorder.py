@@ -30,16 +30,19 @@ def on_pause():
 def on_restart():
     cfg.recorder.restart()
 
+
+def get_filter(steprecorder=False):
+    if steprecorder:
+        return cfg.step_recorder.filter
+    return cfg.recorder.filter
+
+
 #load config
 cfg=configuration.cfg
 GUIFactory.setGUIImpl(cfg.get("gui"))
 localization.set_location(cfg.get("language"))
 cfg.recorder=RecorderFactory.get_by_name(cfg.get("screen_recorder"))
 cfg.step_recorder=RecorderFactory.get_by_name(cfg.get("step_recorder"))
-if cfg.recorder is not None:
-    cfg.recorder_filter=cfg.recorder.filter
-if cfg.step_recorder is not None:
-    cfg.step_recorder_filter=cfg.step_recorder.filter
 cfg_item_name=cfg.get("gui")
 
 
@@ -51,7 +54,7 @@ main.set_on_start(on_start)
 main.set_on_pause(on_pause)
 main.set_on_restart(on_restart)
 main.set_on_stop(on_stop)
-
+main.set_get_filter_fn(get_filter)
 
 #load plugin
 __enable_plugins=[]
