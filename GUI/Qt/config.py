@@ -1,6 +1,11 @@
 from PyQt4 import QtGui, QtCore
 import py.localization as local
 import QtHelper as helper
+import py.localization as local
+import py.RecorderFactory as RecorderFactory
+import GUI.GUIFactory as GUIFactory
+from py import recorder
+import py.configuration as cfg
 
 lang = local.Local()
 _ = helper.get_text_fn(lang)
@@ -13,11 +18,44 @@ def _fromUtf8(string):
 def _translate(_1, string, _2):
     return _(string)
 
+
 class Config(QtGui.QDialog):
     def __init__(self):
         QtGui.QWidget.__init__(self)
         self.setupUi(self)
         self.retranslateUi(self)
+
+        self._init_combox(self.cb_language,
+                          local.get_all_languages(),
+                          lambda t: t[1])
+        self._init_combox(self.cb_recorder,
+                          RecorderFactory.get_all_recorder(),
+                          lambda t: None if isinstance(t, recorder.StepRecorder) else str(t)
+                          )
+        self._init_combox(self.cb_gui, GUIFactory.get_all_gui())
+
+    def _init_combox(self, cb, itrable, strfn=str):
+        for v in itrable:
+            string = strfn(v)
+            if string is not None:
+                string = _(string)
+                data = QtCore.QVariant(v)
+                cb.addItem(string, v)
+
+    def closeEvent(self, QCloseEvent):
+        data = self.cb_language.itemData(self.cb_language.currentIndex()).toPyObject()
+        cfg.cfg.set("language", data[0])
+        local.set_location(data[0])
+
+        data = self.cb_recorder.itemData(self.cb_recorder.currentIndex()).toPyObject()
+        cfg.cfg.recorder = data
+        cfg.cfg.set("recorder", data.name)
+
+        data = self.cb_gui.itemData(self.cb_gui.currentIndex()).toPyObject()
+        cfg.cfg.set("GUI", data)
+
+        cfg.cfg.save()
+
 
     def setupUi(self, Form):
         Form.setObjectName(_fromUtf8("Form"))
@@ -66,9 +104,9 @@ class Config(QtGui.QDialog):
         QtCore.QMetaObject.connectSlotsByName(Form)
 
     def retranslateUi(self, Form):
-        self.label.setText(_translate("Form", "Language", None))
-        self.label_3.setText(_translate("Form", "Recorder", None))
-        self.label_2.setText(_translate("Form", "GUI", None))
+        self.label_2.setText(_translate("Form", "Language", None))
+        self.label.setText(_translate("Form", "Recorder", None))
+        self.label_3.setText(_translate("Form", "GUI", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("Form", "Recorders", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), _translate("Form", "Plugins", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_4), _translate("Form", "GUI", None))

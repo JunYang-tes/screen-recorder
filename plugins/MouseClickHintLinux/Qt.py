@@ -105,6 +105,7 @@ def main():
             elif s[0] == "move":
                 circle.emit(QtCore.SIGNAL("move_circle"), int(s[1]), int(s[2]))
             elif s[0] == "quit":
+                print "quit"
                 app.exit(0)
 
     import threading

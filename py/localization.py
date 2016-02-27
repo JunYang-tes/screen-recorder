@@ -35,7 +35,7 @@ _languages = []
 
 
 def __init():
-    list_file = os.path.dirname(__file__) + "lang/lang_list"
+    list_file = os.path.dirname(__file__) + "/lang/lang_list"
     if os.path.exists(list_file):
         with open(list_file) as f:
             for line in f.readlines():

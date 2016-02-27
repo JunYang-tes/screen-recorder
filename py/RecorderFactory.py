@@ -25,7 +25,7 @@ __recorders.append(StepRecorder(configuration.cfg.recorder_cfg_item("StepRecorde
                                 configuration.cfg.recorder_cfg_item("StepRecorder")))
 
 def get_all_recorder():
-    return copy._deepcopy_list(__recorders)
+    return copy.copy(__recorders)
 
 def get_by_name(name):
     for r in __recorders:

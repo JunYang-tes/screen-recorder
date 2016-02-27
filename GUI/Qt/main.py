@@ -13,7 +13,7 @@ import config
 lang = local.Local()
 _ = helper.get_text_fn(lang)
 
-
+import sys;
 class Main(QtGui.QMainWindow):
     def __init__(self, cfg={}, user_cfg={}):
         self._app = QtGui.QApplication([])
@@ -25,12 +25,14 @@ class Main(QtGui.QMainWindow):
         self._record_control = recording.RecordControl()
         self._range = GUI.Qt.range.Range()
         self.connect(self.btn_saveto, QtCore.SIGNAL("clicked()"), self.select_save_to)
-        self.connect(self.menuConfig, QtCore.SIGNAL("clicked()"), lambda: config().exec_())
+
+        menu_config_action = QtGui.QAction(_("Global"), self)
+        self.connect(menu_config_action, QtCore.SIGNAL("triggered()"), lambda: config.Config().exec_())
+        self.menuConfig.addAction(menu_config_action)
         self._saveto = "out.gif";
         self.__restore()
         self.get_filter = None
         self.is_step_recorder = False
-
     def __restore(self):
         try:
             if "RecorderControl" in self.cfg:

@@ -1,8 +1,8 @@
 {
     "Qt": {
         "Range": {
-            "y": 52, 
-            "x": 122, 
+            "y": 40, 
+            "x": 0, 
             "w": 640, 
             "h": 320
         }, 
@@ -14,32 +14,6 @@
             "x": 1033
         }
     }, 
+    "language": "zh_CN", 
     "Plugin": {}, 
-    "plugin_config": {}, 
-    "recorder_config": {
-        "StepRecorder": {
-            "filter": "*.html"
-        }, 
-        "byzanz_record": {
-            "filter": "*.gif | *.GIF"
-        }
-    }, 
-    "gui_config": {
-        "Qt": {
-            "Range": {
-                "y": 52, 
-                "x": 122, 
-                "w": 640, 
-                "h": 320
-            }, 
-            "Main": {
-                "folder": ""
-            }, 
-            "RecorderControl": {
-                "y": 21, 
-                "x": 1033
-            }
-        }
-    }, 
-    "MouseClickHint": {}
-}
+    "GUI": 
