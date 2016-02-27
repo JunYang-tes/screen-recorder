@@ -160,7 +160,10 @@ class StepRecorder(ScreenRecorder,lib.event.MouseListener):
 
     def __init__(self,program_cfg={},user_cfg={}):
         ScreenRecorder.__init__(self,program_cfg,user_cfg)
-        import autopy
+        try:
+            import autopy
+        except ImportError:
+            logging.warn("autopy missing")
         self.state="waiting"
         self._name="StepRecorder"
 
@@ -199,6 +202,8 @@ class StepRecorder(ScreenRecorder,lib.event.MouseListener):
     def restart(self):
         """restart a paused recording process"""
         pass
+
+
 if __name__ == "__main__":
     c = ConfigExternalRecorder()
     c.load("external_program_config/byzanz-record")
