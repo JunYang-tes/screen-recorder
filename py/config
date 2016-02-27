@@ -1,17 +1,17 @@
 {
     "Qt": {
         "Range": {
-            "y": 21, 
-            "x": 0, 
+            "y": 52, 
+            "x": 122, 
             "w": 640, 
             "h": 320
         }, 
         "Main": {
-            "folder": "/home/jun/PycharmProjects/screen-recorder-shell"
+            "folder": ""
         }, 
         "RecorderControl": {
-            "y": 134, 
-            "x": 787
+            "y": 21, 
+            "x": 1033
         }
     }, 
     "Plugin": {}, 
@@ -27,17 +27,17 @@
     "gui_config": {
         "Qt": {
             "Range": {
-                "y": 21, 
-                "x": 0, 
+                "y": 52, 
+                "x": 122, 
                 "w": 640, 
                 "h": 320
             }, 
             "Main": {
-                "folder": "/home/jun/PycharmProjects/screen-recorder-shell"
+                "folder": ""
             }, 
             "RecorderControl": {
-                "y": 134, 
-                "x": 787
+                "y": 21, 
+                "x": 1033
             }
         }
     }, 

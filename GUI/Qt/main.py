@@ -1,102 +1,116 @@
 # -*- coding: utf-8 -*-
-from PyQt4 import QtGui,QtCore,Qt
+from PyQt4 import QtGui, QtCore, Qt
 
 from GUI.Qt import QtHelper as helper
 from py import localization as local
 from py.configdata import Range as r;
 from py.configdata import RecordConfig as rconfig;
 import os
-import  recording
+import recording
 import GUI.Qt.range
 
-
-lang=local.Local()
+lang = local.Local()
 _ = helper.get_text_fn(lang)
 
+
 class Main(QtGui.QMainWindow):
-    def __init__(self,cfg={},user_cfg={}):
+    def __init__(self, cfg={}, user_cfg={}):
         self._app = QtGui.QApplication([])
-        super(Main,self).__init__()
-        self.cfg=cfg
-        self.user_cfg=user_cfg
-        self.__folder=""
+        super(Main, self).__init__()
+        self.cfg = cfg
+        self.user_cfg = user_cfg
+        self.__folder = ""
         self.setupUi(self)
-        self._record_control=recording.RecordControl()
-        self._range=GUI.Qt.range.Range()
-        self.connect(self.btn_saveto,QtCore.SIGNAL("clicked()"),self.select_save_to)
-        self._saveto="out.gif";
+        self._record_control = recording.RecordControl()
+        self._range = GUI.Qt.range.Range()
+        self.connect(self.btn_saveto, QtCore.SIGNAL("clicked()"), self.select_save_to)
+        self._saveto = "out.gif";
         self.__restore()
+        self.get_filter = None
+        self.is_step_recorder = False
 
     def __restore(self):
         try:
             if "RecorderControl" in self.cfg:
-                d=self.cfg["RecorderControl"]
-                self._record_control.move(d['x'],d['y'])
+                d = self.cfg["RecorderControl"]
+                self._record_control.move(d['x'], d['y'])
             if "Range" in self.cfg:
-                d=self.cfg["Range"]
-                self._range.move(d['x'],d['y'])
-                self._range.setBaseSize(d['w'],d['h'])
+                d = self.cfg["Range"]
+                self._range.move(d['x'], d['y'])
+                self._range.setBaseSize(d['w'], d['h'])
             if "Main" in self.cfg:
-                d=self.cfg["Main"]
-                self.__folder=d["Main"]
+                d = self.cfg["Main"]
+                self.__folder = d["Main"]
         except:
             pass
 
     def __save(self):
-        d=self.cfg["RecorderControl"]={}
-        d["x"]=self._record_control.pos().x()
-        d["y"]=self._record_control.pos().y()
-        d=self.cfg["Range"]={}
-        #d['x']=self._range.x()
-        #d['y']=self._range.y()
-        #d['y']=self._range.frameGeometry().y()
-        d['x']=self._range.pos().x()
-        d['y']=self._range.pos().y()
-        d['w']=self._range.width()
-        d['h']=self._range.height()
-        d=self.cfg["Main"]={}
-        d["folder"]=self.__folder
-
+        d = self.cfg["RecorderControl"] = {}
+        d["x"] = self._record_control.pos().x()
+        d["y"] = self._record_control.pos().y()
+        d = self.cfg["Range"] = {}
+        # d['x']=self._range.x()
+        # d['y']=self._range.y()
+        # d['y']=self._range.frameGeometry().y()
+        d['x'] = self._range.pos().x()
+        d['y'] = self._range.pos().y()
+        d['w'] = self._range.width()
+        d['h'] = self._range.height()
+        d = self.cfg["Main"] = {}
+        d["folder"] = self.__folder
 
     @property
     def saveto(self):
         return self._saveto
 
     @saveto.setter
-    def saveto(self,value):
-        self._saveto=value
+    def saveto(self, value):
+        self._saveto = value
         self.lineEdit.setText(value)
 
-    def closeEvent(self,e):
+    def closeEvent(self, e):
         self.__save()
 
-
-
-    def set_on_start(self,func):
+    def set_on_start(self, func):
         self._record_control.set_on_start(func)
-    def set_on_stop(self,func):
+
+    def set_on_stop(self, func):
         self._record_control.set_on_stop(func)
-    def set_on_pause(self,func):
+
+    def set_on_pause(self, func):
         self._record_control.set_on_pause(func)
-    def set_on_restart(self,fun):
+
+    def set_on_restart(self, fun):
         self._record_control.set_on_restart(fun)
+
+    def set_get_filter_fn(self, fun):
+        self.get_filter = fun
+
     def get_cfg(self):
         return self.cfg
 
     def get_user_cfg(self):
         return self.user_cfg
 
-
     def run(self):
         self.show()
         return self._app.exec_()
 
     def select_save_to(self):
-        fd=QtGui.QFileDialog()
-        open_file=fd.getSaveFileName(self,_("Save to"),self.__folder,"GIF (*.gif)")
-        #open_file=QtGui.QFileDialog.getSaveFileName(QWidget_parent=None,QString_caption= _("Save"),self.__folder)
-        if open_file!="":
-            self.saveto=open_file
+        fd = QtGui.QFileDialog()
+        filter = "*.*"
+        if callable(self.get_filter):
+            filter = self.get_filter(self.is_step_recorder);
+
+        save_to = fd.getSaveFileName(self, _("Save to"), self.__folder, filter)
+        # save_to=QtGui.QFileDialog.getSaveFileName(QWidget_parent=None,QString_caption= _("Save"),self.__folder)
+        if save_to != "":
+            save_to = str(save_to)
+            suffix = save_to[save_to.rfind("."):]
+            suffix_list = [x[x.rfind('.'):] for x in filter.split("|")]
+            if suffix not in suffix_list:
+                save_to += suffix_list[0]
+            self.saveto = save_to
 
     def setupUi(self, MainWindow):
         MainWindow.setObjectName(_("MainWindow"))
@@ -200,11 +214,16 @@ class Main(QtGui.QMainWindow):
     def get_region_clicked(self):
         self.hide()
         self.__restore()
-        self.record_config=self._range.get_range()
-        file_name= str(self.lineEdit.text())
-        if file_name!= "":
-            self.record_config.saveto=file_name
-            self.__folder=os.path.dirname(file_name)
+        self.record_config = self._range.get_range()
+        file_name = str(self.lineEdit.text())
+        if file_name != "":
+            self.record_config.saveto = file_name
+            self.__folder = os.path.dirname(file_name)
+        else:
+            filter = self.get_filter(self.is_step_recorder)
+            suffix = filter.split("|")[0]
+            suffix = suffix[suffix.rfind("."):]
+            self.record_config.saveto = "out" + suffix
         self._record_control.set_config(self.record_config)
         self._record_control.exec_()
         self.__save()
@@ -225,11 +244,8 @@ class Main(QtGui.QMainWindow):
         self.show()
 
 
-
-  
-
-if __name__ =="__main__":
-     #app = QtGui.QApplication([])
-     win=Main()
-     #win.show()
-     #app.exec_()
+if __name__ == "__main__":
+    # app = QtGui.QApplication([])
+    win = Main()
+    # win.show()
+    # app.exec_()

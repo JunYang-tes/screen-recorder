@@ -24,7 +24,7 @@ class Config:
         self.user_cfg_data={}
         self.user_cfg_data["gui_config"]={}
         self.user_cfg_data["plugin_config"]={}
-        self.user_cfg_data[""]
+        self.user_cfg_data["recorder_config"] = {}
 
     def __default_cfg(self):
         self.cfgdata={}
