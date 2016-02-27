@@ -88,7 +88,7 @@ def main():
         while True:
             try:
                 s = raw_input().split(":")
-            except IOError:
+            except EOFError:
                 app.exit(0)
 
             if s[0] == "show":
