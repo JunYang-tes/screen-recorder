@@ -2,17 +2,17 @@
     "screen_recorder": "byzanz_record", 
     "Qt": {
         "Range": {
-            "y": 0, 
-            "x": 0, 
+            "y": 210, 
+            "x": 310, 
             "w": 640, 
-            "h": 480
+            "h": 320
         }, 
         "Main": {
             "folder": ""
         }, 
         "RecorderControl": {
-            "y": 0, 
-            "x": 0
+            "y": 370, 
+            "x": 516
         }
     }, 
     "language": "en_UA", 
