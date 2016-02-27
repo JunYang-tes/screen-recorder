@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from PyQt4 import QtGui,QtCore
+from PyQt4 import QtGui, QtCore, Qt
 import os
 import threading
 import py.localization as l
@@ -24,8 +24,7 @@ class RecordControl(QtGui.QDialog):
         """
         self.state="wait_start"
         self.setupUi(self)
-        self.setAttribute(262144)#qt.Qt.WindowStaysOnTopHint)
-        
+        self.setWindowFlags(Qt.Qt.WindowStaysOnTopHint)
 
     def exec_(self):
         self.start_time_report()
