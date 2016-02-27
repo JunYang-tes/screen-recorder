@@ -1,0 +1,5 @@
+{
+    "name":"ffmpeg_win",
+    "program":"ffmpeg",
+    "argument":"ffmpeg -f x11grab -r 30 -s {width}x{height} -i :0.0+{x},{y} -vcodec libx264 {saveto}"
+}

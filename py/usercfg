@@ -1,5 +1,5 @@
 {
-    "screen_recorder": "byzanz_record", 
+    "screen_recorder": "ffmpeg_linux", 
     "Qt": {}, 
     "language": "zh_CN", 
     "Plugin": {}, 

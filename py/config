@@ -1,13 +1,13 @@
 {
     "Qt": {
         "Range": {
-            "y": 137, 
-            "x": 332, 
+            "y": 21, 
+            "x": 0, 
             "w": 640, 
             "h": 320
         }, 
         "Main": {
-            "folder": ""
+            "folder": "/home/jun/PycharmProjects/screen-recorder-shell"
         }, 
         "RecorderControl": {
             "y": 134, 
@@ -27,13 +27,13 @@
     "gui_config": {
         "Qt": {
             "Range": {
-                "y": 137, 
-                "x": 332, 
+                "y": 21, 
+                "x": 0, 
                 "w": 640, 
                 "h": 320
             }, 
             "Main": {
-                "folder": ""
+                "folder": "/home/jun/PycharmProjects/screen-recorder-shell"
             }, 
             "RecorderControl": {
                 "y": 134, 

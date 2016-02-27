@@ -16,8 +16,14 @@ class ScreenRecorder(object):
         self.program_cfg=program_cfg
         self.user_cfg=user_cfg
         self._name=""
-        if "filter" in program_cfg:
-            self.filter=program_cfg["filter"]
+
+    @property
+    def filter(self):
+        return self._filter
+
+    @filter.setter
+    def filter(self, value):
+        raise Exception("Read-only property")
 
     @property
     def name(self):
@@ -114,7 +120,7 @@ class ConfigExternalRecorder(ExternalRecorder):
 
     """
     def __init__(self,program_cfg={},user_cfg={}):
-        self.filter="*.gif"
+        self._filter = "*.gif"
         super(ConfigExternalRecorder, self).__init__(program_cfg,user_cfg)
         self._name = ""
         self._argument = ""
@@ -132,6 +138,7 @@ class ConfigExternalRecorder(ExternalRecorder):
                 raise Exception("Program must set")
             self.__set(data, "name")
             self.__set(data, "argument")
+            self.__set(data, "filter")
 
     def __set(self, data, key, w=True):
         if key in data:
@@ -145,7 +152,7 @@ class ConfigExternalRecorder(ExternalRecorder):
                                      y=str(config.range.y),
                                      width=str(config.range.width),
                                      height=str(config.range.height),
-                                     saveto=str(config.saveto))
+                                     saveto='"' + str(config.saveto) + '"')
 
 
 

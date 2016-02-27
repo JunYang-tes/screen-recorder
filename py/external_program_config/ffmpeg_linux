@@ -1,0 +1,6 @@
+{
+    "name":"ffmpeg_linux",
+    "program":"ffmpeg",
+    "filter":"*.mkv",
+    "argument":"-f x11grab -r 30 -s {width}x{height} -i :0.0+{x},{y} -vcodec libx264 {saveto}"
+}
