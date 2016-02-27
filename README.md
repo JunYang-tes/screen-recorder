@@ -4,6 +4,7 @@
 + python-xlib
 + byzanz-record or ffmpeg or other external program  
 
+
 ##Example
 full-screen
 ![image](https://github.com/OuyangQianba/screen-recorder/blob/master/recorded/fullscreen.gif)
