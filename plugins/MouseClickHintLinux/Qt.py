@@ -86,7 +86,11 @@ def main():
 
     def control():
         while True:
-            s = raw_input().split(":")
+            try:
+                s = raw_input().split(":")
+            except IOError:
+                app.exit(0)
+
             if s[0] == "show":
                 # because we can't modify safely Widget in non-main-loop thread
                 # so we delegate main-loop thread to do this for us

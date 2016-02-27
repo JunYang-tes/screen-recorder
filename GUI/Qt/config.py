@@ -10,6 +10,9 @@ def _fromUtf8(string):
     return string
 
 
+def _translate(_1, string, _2):
+    return _(string)
+
 class Config(QtGui.QDialog):
     def __init__(self):
         QtGui.QWidget.__init__(self)
@@ -18,31 +21,35 @@ class Config(QtGui.QDialog):
 
     def setupUi(self, Form):
         Form.setObjectName(_fromUtf8("Form"))
-        Form.resize(622, 284)
+        Form.resize(372, 179)
+        Form.setWindowTitle(_fromUtf8("Config"))
         self.horizontalLayout = QtGui.QHBoxLayout(Form)
         self.horizontalLayout.setObjectName(_fromUtf8("horizontalLayout"))
         self.tabWidget = QtGui.QTabWidget(Form)
         self.tabWidget.setObjectName(_fromUtf8("tabWidget"))
         self.tab = QtGui.QWidget()
         self.tab.setObjectName(_fromUtf8("tab"))
-        self.gridLayoutWidget = QtGui.QWidget(self.tab)
-        self.gridLayoutWidget.setGeometry(QtCore.QRect(10, 10, 581, 51))
-        self.gridLayoutWidget.setObjectName(_fromUtf8("gridLayoutWidget"))
-        self.gridLayout = QtGui.QGridLayout(self.gridLayoutWidget)
+        self.gridLayout = QtGui.QGridLayout(self.tab)
         self.gridLayout.setObjectName(_fromUtf8("gridLayout"))
-        self.comboBox_2 = QtGui.QComboBox(self.gridLayoutWidget)
-        self.comboBox_2.setObjectName(_fromUtf8("comboBox_2"))
-        self.gridLayout.addWidget(self.comboBox_2, 2, 1, 1, 1)
-        self.label_2 = QtGui.QLabel(self.gridLayoutWidget)
+        self.label = QtGui.QLabel(self.tab)
+        self.label.setObjectName(_fromUtf8("label"))
+        self.gridLayout.addWidget(self.label, 0, 0, 1, 1)
+        self.label_3 = QtGui.QLabel(self.tab)
+        self.label_3.setObjectName(_fromUtf8("label_3"))
+        self.gridLayout.addWidget(self.label_3, 1, 0, 1, 1)
+        self.label_2 = QtGui.QLabel(self.tab)
         self.label_2.setObjectName(_fromUtf8("label_2"))
         self.gridLayout.addWidget(self.label_2, 2, 0, 1, 1)
-        self.comboBox = QtGui.QComboBox(self.gridLayoutWidget)
-        self.comboBox.setObjectName(_fromUtf8("comboBox"))
-        self.gridLayout.addWidget(self.comboBox, 1, 1, 1, 1)
-        self.label = QtGui.QLabel(self.gridLayoutWidget)
-        self.label.setObjectName(_fromUtf8("label"))
-        self.gridLayout.addWidget(self.label, 1, 0, 1, 1)
-        self.tabWidget.addTab(self.tab, _fromUtf8(""))
+        self.cb_recorder = QtGui.QComboBox(self.tab)
+        self.cb_recorder.setObjectName(_fromUtf8("cb_recorder"))
+        self.gridLayout.addWidget(self.cb_recorder, 0, 1, 1, 1)
+        self.cb_gui = QtGui.QComboBox(self.tab)
+        self.cb_gui.setObjectName(_fromUtf8("cb_gui"))
+        self.gridLayout.addWidget(self.cb_gui, 1, 1, 1, 1)
+        self.cb_language = QtGui.QComboBox(self.tab)
+        self.cb_language.setObjectName(_fromUtf8("cb_language"))
+        self.gridLayout.addWidget(self.cb_language, 2, 1, 1, 1)
+        self.tabWidget.addTab(self.tab, _fromUtf8("Global"))
         self.tab_2 = QtGui.QWidget()
         self.tab_2.setObjectName(_fromUtf8("tab_2"))
         self.tabWidget.addTab(self.tab_2, _fromUtf8(""))
@@ -59,13 +66,12 @@ class Config(QtGui.QDialog):
         QtCore.QMetaObject.connectSlotsByName(Form)
 
     def retranslateUi(self, Form):
-        Form.setWindowTitle(_("Config"))
-        self.label_2.setText(_("GUI"))
-        self.label.setText(_("Language"))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _("Global"))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _("Recorders"))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), _("Plugins"))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_4), _("GUI"))
+        self.label.setText(_translate("Form", "Language", None))
+        self.label_3.setText(_translate("Form", "Recorder", None))
+        self.label_2.setText(_translate("Form", "GUI", None))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("Form", "Recorders", None))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), _translate("Form", "Plugins", None))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_4), _translate("Form", "GUI", None))
 
 
 if __name__ == "__main__":

@@ -8,6 +8,7 @@ from py.configdata import RecordConfig as rconfig;
 import os
 import recording
 import GUI.Qt.range
+import config
 
 lang = local.Local()
 _ = helper.get_text_fn(lang)
@@ -24,6 +25,7 @@ class Main(QtGui.QMainWindow):
         self._record_control = recording.RecordControl()
         self._range = GUI.Qt.range.Range()
         self.connect(self.btn_saveto, QtCore.SIGNAL("clicked()"), self.select_save_to)
+        self.connect(self.menuConfig, QtCore.SIGNAL("clicked()"), lambda: config().exec_())
         self._saveto = "out.gif";
         self.__restore()
         self.get_filter = None
